@@ -13,7 +13,7 @@
 ```
 sudo chown ubuntu:ubuntu /tmp/flink-samza-handoff.sh 
 sudo chmod 770 /tmp/flink-samza-handoff.sh
-/tmp/flink-samza-handoff.sh 
+bash /tmp/flink-samza-handoff.sh 
 ```
 
 
