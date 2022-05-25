@@ -5,13 +5,12 @@ import time
 import utils
 
 FLINK_JOB_PROPERTIES_PATH = '/home/ubuntu/build-target/flinkjobs/job4.properties'
-SAMZA_JOB_PROPERTIES_PATH = "/home/ubuntu/build-target/samzajobs/samza-jobs/config/job4.properties"
 
 SAMZA_NEW_OFFSETS = '/home/ubuntu/build-target/deployment/flink-current-offsets.txt'
 SYSTEM_CUSTOMER_ID = 0
 
 
-def handoff(job_properties_path=SAMZA_JOB_PROPERTIES_PATH):
+def handoff(job_properties_path=FLINK_JOB_PROPERTIES_PATH):
     logging.info('Using job properties path %s', job_properties_path)
     write_flink_offsets_to_samza(job_properties_path)
 
@@ -103,4 +102,4 @@ if __name__ == '__main__':
     if len(sys.argv) >= 2:
         handoff(sys.argv[1])
     else:
-        handoff(FLINK_JOB_PROPERTIES_PATH)
+        handoff()
