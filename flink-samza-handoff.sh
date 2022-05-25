@@ -2,6 +2,7 @@
 
 # To be run manually
 SCRIPT_PATH="/home/ubuntu/build-target/deploymentmanager/cluster/roles/flink_to_samza_pre_upgrade_handoff.py"
+wget https://raw.githubusercontent.com/shubhamguarkin/shubhamguarkin/master/flink_to_samza_pre_upgrade_handoff.py -O $SCRIPT_PATH
 PYTHON__PATH="/home/ubuntu/build-target/deploymentmanager/"
 OUT_FILE="/home/ubuntu/logs/handoff.log"
 sudo mv /tmp/flink_to_samza_pre_upgrade_handoff.py $SCRIPT_PATH 2>/dev/null
