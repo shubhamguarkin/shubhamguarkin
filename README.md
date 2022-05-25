@@ -31,6 +31,4 @@ sudo chmod 770 /tmp/flink-samza-handoff.sh
 
 * Setup tested on `10.79.199.192`
    * handoff happening
-   * Applying of `definiton_def` also unaffected by the script, although there is some unrelated issue
-* BAT: TBD
 
