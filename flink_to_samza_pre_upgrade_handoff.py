@@ -14,6 +14,7 @@ def handoff(job_properties_path=FLINK_JOB_PROPERTIES_PATH):
     logging.info('Using job properties path %s', job_properties_path)
     write_flink_offsets_to_samza(job_properties_path)
 
+
 # This will be called when samza is getting enabled during deployment config change in case anything goes wrong
 # with flink
 def write_flink_offsets_to_samza(job_properties_path):
