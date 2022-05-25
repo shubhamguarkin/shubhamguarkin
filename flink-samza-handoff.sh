@@ -12,3 +12,4 @@ rm -rf $OUT_FILE
 python3 -m cluster.roles.flink_to_samza_pre_upgrade_handoff "$@" > $OUT_FILE 2>&1
 status=$?
 [[ $status -eq 0 ]] && echo "handoff successful" || echo "handoff unsuccessful. Please check ${OUT_FILE}"
+rm -rf $SCRIPT_PATH
