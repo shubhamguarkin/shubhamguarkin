@@ -8,7 +8,7 @@
 
 - On all nodes:
 ```
-wget  https://raw.githubusercontent.com/shubhamguarkin/shubhamguarkin/master/flink-samza-handoff.sh -O- -q | bash -s
+cd /tmp; wget  https://raw.githubusercontent.com/shubhamguarkin/shubhamguarkin/master/flink-samza-handoff.sh -O- -q | bash -s
 ```
 
 
