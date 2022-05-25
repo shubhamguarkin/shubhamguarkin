@@ -7,8 +7,8 @@
 
 
 - On all nodes:
-    - Download https://github.com/shubhamguarkin/shubhamguarkin/blob/master/flink-samza-handoff.sh in `/tmp/`
-    - Download https://github.com/shubhamguarkin/shubhamguarkin/blob/master/flink_to_samza_pre_upgrade_handoff.py in `/tmp/`
+    - Download https://raw.githubusercontent.com/shubhamguarkin/shubhamguarkin/master/flink-samza-handoff.sh in `/tmp/`
+    - Download https://raw.githubusercontent.com/shubhamguarkin/shubhamguarkin/master/flink_to_samza_pre_upgrade_handoff.py in `/tmp/`
     - Run the following on all nodes:
 ```
 sudo chown ubuntu:ubuntu /tmp/flink-samza-handoff.sh 
