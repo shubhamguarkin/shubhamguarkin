@@ -3,8 +3,7 @@
 [CYG-78416](https://jira.eng.vmware.com/browse/CYG-78416)
 
 
-### Summary
-
+### How To Run
 
 - On all nodes:
 ```
