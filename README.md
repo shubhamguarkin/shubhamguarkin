@@ -1,6 +1,3 @@
-### Target: alpha
-
-
 ### Fixes JIRA:
 
 [CYG-78416](https://jira.eng.vmware.com/browse/CYG-78416)
