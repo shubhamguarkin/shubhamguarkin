@@ -28,7 +28,8 @@ cd /tmp; wget  https://raw.githubusercontent.com/shubhamguarkin/shubhamguarkin/m
 KAFKA_HOME='/home/ubuntu/deploy/kafka'
 ZK_HOSTS=$(grep 'zookeeper.connect=' $KAFKA_HOME/config/consumer.properties | cut -d'=' -f2)
 BROKER=localhost:9092
-bash $KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server $BROKER  --topic __samza_checkpoint_ver_1_for_job4_DIZ0QM2 --from-beginning
+DID=$(cat /home/ubuntu/build-target/deployment/deployment.id)
+bash $KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server $BROKER  --topic __samza_checkpoint_ver_1_for_job4_$DID --from-beginning
 .......
 {"SystemStreamPartition [kafka, Topic3, 10]":{"system":"kafka","partition":"10","offset":"69382","stream":"Topic3"}}
 {"SystemStreamPartition [kafka, Topic3, 4]":{"system":"kafka","partition":"4","offset":"48985","stream":"Topic3"}}
