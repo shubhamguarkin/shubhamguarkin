@@ -6,7 +6,6 @@ import utils
 
 FLINK_JOB_PROPERTIES_PATH = '/home/ubuntu/build-target/flinkjobs/job4.properties'
 SAMZA_NEW_OFFSETS = '/home/ubuntu/build-target/deployment/flink-current-offsets.txt'
-SYSTEM_CUSTOMER_ID = 0
 
 
 def handoff_offsets(job_properties_path=FLINK_JOB_PROPERTIES_PATH):
