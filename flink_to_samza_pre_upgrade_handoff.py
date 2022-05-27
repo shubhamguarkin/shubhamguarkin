@@ -84,6 +84,22 @@ def shutdown_flink():
     logging.info("flink shutdown complete")
 
 
+def unmask_samza():
+    cmd = "sudo systemctl unmask samzajobs.service"
+    rc = run_local_cmd(cmd)
+    if rc:
+        raise Exception('Failed to unmask samza')
+    logging.info("samza unmasking complete")
+
+
+def create_samza_dir_in_hdfs():
+    cmd = "sudo -u hdfs hdfs dfs -mkdir -p /samza; sudo -u hdfs hdfs dfs -chown yarn /samza"
+    rc = run_local_cmd(cmd)
+    if rc:
+        raise Exception('Failed to create samza dir in hdfs')
+    logging.info("creating samza dir in hdfs complete")
+
+
 def run_local_cmd(cmd):
     logging.info("Running command %s", cmd)
     rc, out, err = utils.run_local_cmd(cmd, False)
@@ -96,6 +112,8 @@ def run_local_cmd(cmd):
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
     shutdown_flink()
+    create_samza_dir_in_hdfs()
+    unmask_samza()
     if not utils.isThisPlatformNode1():
         logging.info('Exiting as not platform1')
         sys.exit()
