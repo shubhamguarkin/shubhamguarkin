@@ -5,13 +5,11 @@
 
 ### How To Run
 
-- On all nodes:
+- On all platform nodes (first on non `P1`, then on `P1`):
 ```
 cd /tmp; wget  https://raw.githubusercontent.com/shubhamguarkin/shubhamguarkin/master/flink-samza-handoff.sh -O- -q | bash -s
 ```
-
-
-
+Behavior is same `onSaas` and `onPrem`
 
 
 ### Areas of Impact:
