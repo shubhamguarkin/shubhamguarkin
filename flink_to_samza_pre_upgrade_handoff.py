@@ -109,4 +109,3 @@ if __name__ == '__main__':
     else:
         logging.info('Skipping handoff and samza dir creation as not platform1')
     unmask_samza()
-
