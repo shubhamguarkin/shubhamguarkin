@@ -112,12 +112,13 @@ def run_local_cmd(cmd):
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
     shutdown_flink()
-    create_samza_dir_in_hdfs()
-    unmask_samza()
-    if not utils.isThisPlatformNode1():
-        logging.info('Exiting as not platform1')
-        sys.exit()
-    if len(sys.argv) >= 2:
-        handoff(sys.argv[1])
+    if utils.isThisPlatformNode1():
+        create_samza_dir_in_hdfs()
+        if len(sys.argv) >= 2:
+            handoff(sys.argv[1])
+        else:
+            handoff()
     else:
-        handoff()
+        logging.info('Skipping handoff and samza dir creation as not platform1')
+    unmask_samza()
+
