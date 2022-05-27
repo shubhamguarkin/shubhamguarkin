@@ -9,27 +9,18 @@ SAMZA_NEW_OFFSETS = '/home/ubuntu/build-target/deployment/flink-current-offsets.
 SYSTEM_CUSTOMER_ID = 0
 
 
-def handoff(job_properties_path=FLINK_JOB_PROPERTIES_PATH):
+def handoff_offsets(job_properties_path=FLINK_JOB_PROPERTIES_PATH):
     logging.info('Using job properties path %s', job_properties_path)
-    write_flink_offsets_to_samza(job_properties_path)
-
-
-# This will be called when samza is getting enabled during deployment config change in case anything goes wrong
-# with flink
-def write_flink_offsets_to_samza(job_properties_path):
     # checkpoint-tool reside under samzajobs tar. So untar samzajobs and then invoke checkpoint tool
     untar = "{0}/untar_samzajobs.sh {0} {0}/job4.properties.backup".format('/home/ubuntu/build-target/samzajobs')
     rc = run_local_cmd(untar)
     if rc:
         raise Exception('Failed to untar samza tar')
-
     logging.info("samzajobs untar is done")
     utils.delete_file(SAMZA_NEW_OFFSETS)
-
     # Want to update the offset of 2 topics : Topic3 and FastTopic
     flink_offsets = get_flink_current_offsets(3, ["Topic3", "FastTopic"], "vrniflink")
     result = ""
-
     # This is the format which is required for the file to be given in --new-offsets flag while calling checkpoint
     # script for overwriting offsets
     for offset_line in flink_offsets.splitlines():
@@ -39,14 +30,12 @@ def write_flink_offsets_to_samza(job_properties_path):
             atoms[1],  # Partition Id
             atoms[2])  # Current Offset
     utils.write_to_file(SAMZA_NEW_OFFSETS, result)
-
     cmd = "env base_dir='%s' %s --config %s --config %s --new-offsets %s" % (
         "/home/ubuntu/build-target/samzajobs/samza-jobs/",
         "/home/ubuntu/build-target/samzajobs/samza-jobs/bin/checkpoint-tool.sh",
         "job.config.loader.factory=org.apache.samza.config.loaders.PropertiesConfigLoaderFactory",
         ("job.config.loader.properties.path=%s" % job_properties_path),
         SAMZA_NEW_OFFSETS)
-
     logging.info("Executing cmd: %s", cmd)
     rc, out, err = utils.run_local_cmd(cmd, False)
     if rc:
@@ -115,9 +104,9 @@ if __name__ == '__main__':
     if utils.isThisPlatformNode1():
         create_samza_dir_in_hdfs()
         if len(sys.argv) >= 2:
-            handoff(sys.argv[1])
+            handoff_offsets(sys.argv[1])
         else:
-            handoff()
+            handoff_offsets()
     else:
         logging.info('Skipping handoff and samza dir creation as not platform1')
     unmask_samza()
