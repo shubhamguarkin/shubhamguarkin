@@ -1,3 +1,6 @@
+## Sample Output
+![image](https://user-images.githubusercontent.com/50382330/177061710-bb8678e0-2a6e-4264-a5e3-d1e5e6e3fbc9.png)
+
 ## Download async profiler
 ```
 wget https://raw.githubusercontent.com/shubhamguarkin/shubhamguarkin/master/async-profiler/download.sh -O- -q | bash -s
