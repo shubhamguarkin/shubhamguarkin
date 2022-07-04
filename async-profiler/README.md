@@ -18,12 +18,12 @@ wget https://raw.githubusercontent.com/shubhamguarkin/shubhamguarkin/master/asyn
 
 ## Check status of profiler
 ```
-sudo $async_profiler_home/profiler.sh status <pid>
+sudo /tmp/async-profiler-2.8-linux-x64/profiler.sh status <pid>
 ```
 
 ## Take intermediate dump without terminating the profiler
 ```
-sudo $async_profiler_home/profiler.sh dump -f <out_file> -t -i 1000000 <pid>
+sudo /tmp/async-profiler-2.8-linux-x64/profiler.sh dump -f <out_file> -t -i 1000000 <pid>
 ```
   
 ## Source
