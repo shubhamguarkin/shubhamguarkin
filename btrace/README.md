@@ -1,11 +1,22 @@
-# Setup
+# What is it?
+A debugging tool for java processes.
 
+# Setup
+## Download Btrace 
+```
+mkdir -p /tmp/btrace;
+cd /tmp/btrace;
+wget https://github.com/btraceio/btrace/releases/download/v2.2.2/btrace-v2.2.2-bin.tar.gz;
+# Reference: https://github.com/btraceio/btrace#using-btrace
+```
+
+## Run btrace script
 ```
 BTRACE_HOME="/tmp/btrace/btrace_dep"
 sudo chmod -R 777 /tmp/btrace
-pid=$(sudo -u yarn jps | grep Task | cut -d' ' -f1)
-cp="/home/ubuntu/build-target/flinkjobs/engine-0.001-SNAPSHOT.jar"
-java_file="/tmp/btrace/src/main/java/btrace/TsdbSinkLatencies.java"
+pid=$(sudo -u yarn jps | grep Task | cut -d' ' -f1) # For flink task manager
+cp="/home/ubuntu/build-target/flinkjobs/engine-0.001-SNAPSHOT.jar" # For flink task manager
+java_file="/tmp/btrace/src/main/java/btrace/TsdbSinkLatencies.java" # Point to your btrace script
 sudo -E -u yarn $BTRACE_HOME/bin/btrace -u  -p 2022 -classpath $cp $pi $java_file > btrace.out &
 ```
 
@@ -31,5 +42,5 @@ sudo -E -u yarn $BTRACE_HOME/bin/btrace -u  -p 2022 -classpath $cp $pi $java_fil
 
 ## Others
 
-- btrace command takes only one class without inner classes.
+- `btrace` command takes only one `.class`\\`.java` file without inner classes.
 - `-v` is the verbose option. But it prints some logs in production code aas well
