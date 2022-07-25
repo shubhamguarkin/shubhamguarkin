@@ -9,10 +9,16 @@
  - `FlinkWindow.log2` by [@dhayanithisarkin](https://github.com/dhayanithisarkin) shows how to access return value by an intermediate call.
  - Thanks to [@dhayanithisarkin](https://github.com/dhayanithisarkin) for introducing me to Btrace.
 
+# Notes
 
-# Class.getMethod() v/s Class.getDeclaredMethod()
+## Class.getMethod() v/s Class.getDeclaredMethod()
 
 - `Class.getMethod()` looks into superclasses, returns only `public` methods.
 - `Class.getDeclaredMethod()` looks into only the current class. But it can return non-public methods as well.
 - Btrace uses `getDeclaredField()` instead of `getField()` method internally, and then calls `Field.setAccessible(true)`. 
 - Analogously, `getDeclaredMethod()` followed by `Method.setAccessible(true)` should be used.
+
+## Others
+
+- btrace command takes only one class without inner classes.
+- `-v` is the verbose option. But it prints some logs in production code aas well
