@@ -28,7 +28,7 @@ sudo -E -u yarn $BTRACE_HOME/bin/btrace -u  -p 2022 -classpath $cp $pi $java_fil
  - https://www.piotrnowicki.com/2012/05/btrace-a-simple-way-to-instrument-running-java-applications/
  - https://stackoverflow.com/questions/10638826/java-reflection-impact-of-setaccessibletrue?answertab=trending#tab-top
  - https://stackoverflow.com/questions/14520344/using-btrace-to-find-when-a-class-is-created-for-the-first-time
- - `FlinkWindow.log2` by [@dhayanithisarkin](https://github.com/dhayanithisarkin) shows how to access return value by an intermediate call.
+ - `FlinkWindow#log2` by [@dhayanithisarkin](https://github.com/dhayanithisarkin) shows how to access return value by an intermediate call.
  - Thanks to [@dhayanithisarkin](https://github.com/dhayanithisarkin) for introducing me to Btrace.
 
 # Notes
@@ -43,4 +43,5 @@ sudo -E -u yarn $BTRACE_HOME/bin/btrace -u  -p 2022 -classpath $cp $pi $java_fil
 ## Others
 
 - `btrace` command takes only one `.class`\\`.java` file without inner classes.
+- It might be useful to test the btrace script locally. This can be done by running a unit test locally simulating the java process to which btrace script is intended to be attached.
 - `-v` is the verbose option. But it prints some logs in production code aas well
