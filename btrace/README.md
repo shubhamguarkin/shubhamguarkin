@@ -1,3 +1,14 @@
+# Setup
+
+```
+BTRACE_HOME="/tmp/btrace/btrace_dep"
+sudo chmod -R 777 /tmp/btrace
+pid=$(sudo -u yarn jps | grep Task | cut -d' ' -f1)
+cp="/home/ubuntu/build-target/flinkjobs/engine-0.001-SNAPSHOT.jar"
+java_file="/tmp/btrace/src/main/java/btrace/TsdbSinkLatencies.java"
+sudo -E -u yarn $BTRACE_HOME/bin/btrace -u  -p 2022 -classpath $cp $pi $java_file > btrace.out &
+```
+
 # Acknowledgement
 
  - https://github.com/btraceio/btrace/wiki
