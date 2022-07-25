@@ -1,8 +1,0 @@
-Class.getMethod() v/s Class.getDeclaredMethod()
-------------------------------------------------
-Class.getMethod() looks into superclasses, returns only public methods
-
-Class.getDeclaredMethod() looks into only the current class. But it can return non-public methods as well.
-
-Btrace uses getDeclaredField() instead of getField() method, and then calls Field.setAccessible(true).
-Analogously, getDeclaredMethod() followed by Method.setAccessible(true) should be used.
