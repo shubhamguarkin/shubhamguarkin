@@ -65,12 +65,6 @@ public class TsdbSinkLatencies {
                             Arrays.toString(args)));
     }
 
-    private static String callerMethod(final int depth) {
-        StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
-        StackTraceElement e = stacktrace[depth];
-        return e.getMethodName();
-    }
-
     public static void printSinkLatencies(final Class _class,
                                           final Object sink,
                                           final Object checkPointId) throws Exception {
@@ -99,12 +93,6 @@ public class TsdbSinkLatencies {
                             millisSpentInWindow));*/
     }
 
-    private static String toHumanReadableDate(final long epoch) {
-        final String datePattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX";
-        SimpleDateFormat sdf = new SimpleDateFormat(datePattern);
-        return sdf.format(new Date(epoch));
-    }
-
     //    @OnMethod(clazz = "com.vnera.analytics.engine.sink.TSDBSink", method = "notifyCheckpointComplete")
     /*public static void printLatencies(@Self Object tsdbSink,
                                       @ProbeClassName String probeClass,
@@ -126,6 +114,20 @@ public class TsdbSinkLatencies {
                             millisSpentInProcessing,
                             millisSpentInWindow));
     }*/
+
+    // Utility Methods
+
+    private static String callerMethod(final int depth) {
+        StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
+        StackTraceElement e = stacktrace[depth];
+        return e.getMethodName();
+    }
+
+    private static String toHumanReadableDate(final long epoch) {
+        final String datePattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX";
+        SimpleDateFormat sdf = new SimpleDateFormat(datePattern);
+        return sdf.format(new Date(epoch));
+    }
 
     private static Object getValue(final Class _class, final Object object, final String fieldName) {
         final Field field = field(_class.getName(), fieldName);
