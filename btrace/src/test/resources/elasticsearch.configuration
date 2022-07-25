@@ -1,0 +1,8 @@
+host_port {
+   host: "localhost"
+   port: 9300
+}
+sniff: true
+index_names {
+   index_name: "config"
+}
